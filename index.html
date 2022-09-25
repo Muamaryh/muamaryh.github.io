@@ -43,6 +43,7 @@
           <a class="icon-sosmed" href="https://www.facebook.com/Muamaryh" target="_blank"><i class="fab fa-facebook"></i></a>
           <a class="icon-sosmed" href="https://www.instagram.com/muamaryh_" target="_blank"><i class="fab fa-instagram"></i></a>
           <a class="icon-sosmed" href="https://api.whatsapp.com/send?phone=6285314271315" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a class="icon-sosmed" href="https://www.github.com/Muamaryh" target="_blank"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </nav>
@@ -148,24 +149,32 @@
         </div>
         <div class="row justify-content-md-center">
           <div class="col-md-6">
-            <form>
+            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+              <strong>✅BERHASIL!</strong> Pesan telah terkirim.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form name="mp-contact-form">
               <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="InputName" aria-describedby="name" placeholder="Masukkan Nama Lengkap" />
+                <input type="text" class="form-control" id="InputName" aria-describedby="name" placeholder="Masukkan Nama Lengkap" name="nama" />
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Alamat Email</label>
-                <input type="email" class="form-control" id="InputEmail" aria-describedby="email" placeholder="Masukkan Alamat Email" />
+                <input type="email" class="form-control" id="InputEmail" aria-describedby="email" placeholder="Masukkan Alamat Email" name="email" />
               </div>
               <div class="mb-3">
                 <label for="number" class="form-label">No HP</label>
-                <input type="number" class="form-control" id="InputNumber" aria-describedby="number" placeholder="Masukkan Nomor Hp" />
+                <input type="number" class="form-control" id="InputNumber" aria-describedby="number" placeholder="Masukkan Nomor Hp" name="nomorhp" />
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Masukkan Pesan</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tulis Pesan"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tulis Pesan" name="pesan"></textarea>
               </div>
-              <button type="submit" class="btn text-white" style="background-color: #072368">Kirim</button>
+              <button type="submit" class="btn text-white btn-kirim" style="background-color: #072368">Kirim</button>
+              <button class="btn text-white btn-loading d-none" style="background-color: #072368" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
             </form>
           </div>
         </div>
@@ -194,5 +203,36 @@
     </footer>
     <!-- END FOOTER -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+    <!-- BAGIAN DATA FORM  -->
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwoSSbuuqi04vIqYw_W1AgeGSIPT5yg6M-2R2BMxviREQusixpH_cJz-l7_oc9NA4mJgA/exec';
+      const form = document.forms['mp-contact-form'];
+      const btnKirim = document.querySelector('.btn-kirim');
+      const btnLoading = document.querySelector('.btn-loading');
+      const myAlert = document.querySelector('.my-alert');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // KETIKA TOMBOL SUBMIT DIKLIK
+        // TAMPILKAN TOMBOL LOADING, HILANGKAN TOMBOL KIRIM
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then((response) => {
+            // TAMPILKAN TOMBOL KIRIM, HILANGKAN TOMBOL LOADING
+            btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+            // TAMPILKAN ALERT
+            myAlert.classList.toggle('d-none');
+            // form reset
+            form.reset();
+            console.log('Success!', response);
+          })
+          .catch((error) => console.error('Error!', error.message));
+      });
+    </script>
+    <!-- END BAGIAN DATA FORM  -->
   </body>
 </html>

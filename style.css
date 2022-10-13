@@ -1,3 +1,5 @@
+@media screen and (min-width: 767px) and (max-width: 1023px) and (min-width: 1024px) {
+}
 .jumbotron {
   padding-top: 9rem;
   background-color: #072368;
@@ -17,6 +19,9 @@ section {
 .nav-link {
   color: white;
 }
+.navbar-collapse {
+  text-align: center;
+}
 #contact {
   margin-bottom: -50px;
   background-color: #072368;
@@ -26,6 +31,9 @@ section {
   margin-right: 15px;
   margin-left: 15px;
   color: #ffffff;
+}
+.card {
+  margin-bottom: 18px;
 }
 .btn-primary {
   --bs-btn-color: #fff;
@@ -100,6 +108,4 @@ footer {
 }
 .card-body {
   background-position: center;
-}
-@media screen and (min-width: 767px) and (max-width: 1023px) and (min-width: 1024px) {
 }

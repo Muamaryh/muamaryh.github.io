@@ -74,6 +74,9 @@ section {
   background-color: #072368;
   border-color: transparent;
 }
+.link {
+  color: #515151ca;
+}
 .a {
   background-color: #ffffff;
 }

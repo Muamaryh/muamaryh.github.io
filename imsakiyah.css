@@ -1,9 +1,13 @@
 :root {
-  --gradient: linear-gradient(90deg, rgb(27, 28, 34) 15%, rgb(12, 36, 73) 60%, rgb(40, 62, 93) 100%);
+  --gradient: linear-gradient(75deg, rgb(27, 28, 34) 15%, rgb(12, 36, 73) 60%, rgb(40, 62, 93) 100%);
 }
 @font-face {
   font-family: 'digital';
-  src: url('DigitalNumbers-Regular.ttf');
+  src: url('font/DigitalNumbers-Regular.ttf');
+}
+@font-face {
+  font-family: 'ramadhan';
+  src: url('font/RamadhanAmazing-jEnDv.ttf');
 }
 body {
   min-height: 100vh;
@@ -32,6 +36,9 @@ p {
   margin: 0;
   padding: 0;
 }
+.img {
+  width: 10px;
+}
 *,
 :after,
 :before {
@@ -43,8 +50,12 @@ p {
   font-family: 'Roboto Mono', monospace;
 }
 .judul {
-  font-family: 'Roboto Mono', monospace;
-  font-size: medium;
+  font-family: 'Bebas Neue', cursiv;
+  font-size: 20px;
+}
+.pembuka {
+  font-family: 'ramadhan';
+  font-size: 35px;
 }
 .font {
   font-family: 'digital';
@@ -109,7 +120,7 @@ a:hover {
   text-align: center;
   padding-bottom: 10px;
   font-size: 20px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Bebas Neue', cursive;
 }
 .clock {
   font-size: 18x;

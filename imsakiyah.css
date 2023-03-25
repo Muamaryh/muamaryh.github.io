@@ -1,5 +1,5 @@
 :root {
-  --gradient: linear-gradient(180deg, rgb(27, 28, 34) 15%, rgb(12, 36, 73) 60%, rgb(40, 62, 93) 100%);
+  --gradient: linear-gradient(90deg, rgb(27, 28, 34) 15%, rgb(12, 36, 73) 60%, rgb(40, 62, 93) 100%);
 }
 @font-face {
   font-family: 'digital';
@@ -15,7 +15,7 @@ body {
   color: #ffffff;
   margin-top: 0;
   margin-bottom: 0;
-  animation: gradient-animation 25s infinite alternate;
+  animation: gradient-animation 30s infinite alternate;
 }
 @keyframes gradient-animation {
   0% {

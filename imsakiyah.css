@@ -1,10 +1,29 @@
+:root {
+  --gradient: linear-gradient(90deg, rgba(38, 42, 59, 1) 0%, rgba(0, 46, 121, 1) 49%, rgba(76, 119, 179, 1) 100%);
+}
+@font-face {
+  font-family: 'digital';
+  src: url('DigitalNumbers-Regular.ttf');
+}
 body {
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 15px;
-  background: #0d1646;
+  background: #ffffff;
+  background: var(--gradient);
+  background-size: 300%;
   color: #ffffff;
   margin-top: 0;
   margin-bottom: 0;
+  animation: gradient-animation 20s infinite alternate;
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
 }
 /* body, */
 html,
@@ -19,6 +38,17 @@ p {
   box-sizing: border-box;
   outline: 0;
   appearance: none;
+}
+p {
+  font-family: 'Roboto Mono', monospace;
+}
+.judul {
+  font-family: 'Roboto Mono', monospace;
+  font-size: medium;
+}
+.font {
+  font-family: 'digital';
+  font-size: small;
 }
 a {
   color: #5e8ce8;
@@ -35,6 +65,7 @@ a:hover {
   display: grid;
   place-items: center;
   height: 100vh;
+  filter: blur(100%);
 }
 .imageHeader {
   width: 100%;
@@ -53,12 +84,13 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   outline-style: solid;
-  outline-width: 1.8px;
-  outline-color: #ffffff;
+
   transition: transform 0.3s cubic-bezier(0.6, 0.4, 0, 1), opacity 0.3s cubic-bezier(0.6, 0.4, 0, 1);
   will-change: transform;
   border-radius: 14px;
   width: 100%;
+  box-shadow: 0px 0px 9px rgb(10, 10, 10);
+  border: 0px dashed rgb(255, 255, 255);
 }
 .title-wrapper {
   text-align: center;
@@ -76,10 +108,12 @@ a:hover {
 .dateTimeWrapper {
   text-align: center;
   padding-bottom: 10px;
-  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Roboto Mono', monospace;
 }
 .clock {
-  font-size: 27px;
+  font-size: 18x;
+  font-family: 'digital';
 }
 .prayerTime {
   display: grid;

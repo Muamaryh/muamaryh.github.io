@@ -47,10 +47,11 @@ p {
   appearance: none;
 }
 p {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Slabo 27px', serif
+  font-size: larger;
 }
 .judul {
-  font-family: 'Bebas Neue', cursiv;
+  font-family: 'Slabo 27px', serif
   font-size: 20px;
 }
 .pembuka {
@@ -120,10 +121,10 @@ a:hover {
   text-align: center;
   padding-bottom: 10px;
   font-size: 20px;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Barlow Condensed', sans-serif;
 }
 .clock {
-  font-size: 18x;
+  font-size: 15px;
   font-family: 'digital';
 }
 .prayerTime {

@@ -1,5 +1,5 @@
-import prayTimes from "./prayTimes.js";
-import config from "./config.js";
+import prayTimes from './prayTimes.js';
+import config from './config.js';
 
 // DateTime
 // Clock
@@ -9,9 +9,7 @@ const currentTime = () => {
   const minutes = addZero(date.getMinutes());
   const seconds = addZero(date.getSeconds());
 
-  document.querySelector(
-    ".clock"
-  ).innerText = `${hours} : ${minutes} : ${seconds}`;
+  document.querySelector('.clock').innerText = `${hours} : ${minutes} : ${seconds}`;
 
   setTimeout(() => {
     currentTime();
@@ -23,13 +21,13 @@ const addZero = (time) => {
 };
 
 const currentDate = () => {
-  document.querySelector(".date").innerText = new Intl.DateTimeFormat("id-ID", {
-    dateStyle: "full",
+  document.querySelector('.date').innerText = new Intl.DateTimeFormat('id-ID', {
+    dateStyle: 'full',
   }).format(new Date());
 };
 
 // Pray Time
-prayTimes.adjust({ imsak: "10 min", fajr: 20, asr: "Standard", isha: 18 });
+prayTimes.adjust({ imsak: '10 min', fajr: 20, asr: 'Standard', isha: 18 });
 prayTimes.tune({
   imsak: 2.5,
   fajr: 2.5,
@@ -39,13 +37,10 @@ prayTimes.tune({
   isha: 2.5,
 });
 
-const prayTimesResult = prayTimes.getTimes(new Date(), [
-  config.prayTime.latitude || -6.1783056,
-  config.prayTime.longtitude || 106.6318889,
-]);
+const prayTimesResult = prayTimes.getTimes(new Date(), [config.prayTime.latitude || -6.82008, config.prayTime.longtitude || 107.173859]);
 
 const insertPrayerTime = () => {
-  document.querySelectorAll(".prayerTime > div").forEach((e) => {
+  document.querySelectorAll('.prayerTime > div').forEach((e) => {
     e.children[1].innerHTML = prayTimesResult[e.id];
   });
 };

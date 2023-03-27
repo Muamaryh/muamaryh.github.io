@@ -32,6 +32,12 @@ body {
 /* body, */
 html,
 h1,
+.imsak {
+  margin-bottom: 15px;
+}
+.asar {
+  margin-bottom: 70px;
+}
 p {
   margin: 0;
   padding: 0;
@@ -47,16 +53,19 @@ p {
   appearance: none;
 }
 p {
-  font-family: 'Slabo 27px', serif
+  font-family: 'Courier Prime', monospace;
   font-size: larger;
 }
 .judul {
-  font-family: 'Slabo 27px', serif
-  font-size: 20px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 18px;
+  margin-bottom: 35px;
 }
 .pembuka {
   font-family: 'ramadhan';
   font-size: 35px;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 .font {
   font-family: 'digital';
@@ -119,9 +128,13 @@ a:hover {
 }
 .dateTimeWrapper {
   text-align: center;
-  padding-bottom: 10px;
-  font-size: 20px;
-  font-family: 'Barlow Condensed', sans-serif;
+  padding-bottom: 30px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Courier Prime', monospace;
+}
+.copyright {
+  margin-top: 50px;
 }
 .clock {
   font-size: 15px;
@@ -133,6 +146,7 @@ a:hover {
   gap: 10px;
   justify-content: center;
   padding-bottom: 10px;
+  font-size: 15px;
 }
 .prayerTime div {
   display: flex;

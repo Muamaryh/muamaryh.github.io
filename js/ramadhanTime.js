@@ -37,7 +37,7 @@ prayTimes.tune({
   isha: 2.5,
 });
 
-const prayTimesResult = prayTimes.getTimes(new Date(), [config.prayTime.latitude || -6.820762, config.prayTime.longtitude || 107.14296]);
+const prayTimesResult = prayTimes.getTimes(new Date(), [config.prayTime.latitude || -7.166669999999954, config.prayTime.longtitude || 107.08333000000005]);
 
 const insertPrayerTime = () => {
   document.querySelectorAll('.prayerTime > div').forEach((e) => {

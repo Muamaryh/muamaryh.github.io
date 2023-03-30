@@ -35,9 +35,6 @@ h1,
 .imsak {
   margin-bottom: 15px;
 }
-.asar {
-  margin-bottom: 70px;
-}
 p {
   margin: 0;
   padding: 0;
@@ -69,7 +66,7 @@ p {
 }
 .font {
   font-family: 'digital';
-  font-size: small;
+  font-size: medium;
 }
 a {
   color: #5e8ce8;
@@ -128,17 +125,18 @@ a:hover {
 }
 .dateTimeWrapper {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 25px;
   margin-top: 10px;
   font-size: 18px;
   font-family: 'Courier Prime', monospace;
 }
 .copyright {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .clock {
   font-size: 15px;
   font-family: 'digital';
+  margin-top: 5px;
 }
 .prayerTime {
   display: grid;

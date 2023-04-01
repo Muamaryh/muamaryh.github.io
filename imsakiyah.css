@@ -20,6 +20,7 @@ body {
   margin-top: 0;
   margin-bottom: 0;
   animation: gradient-animation 30s infinite alternate;
+  user-select: none;
 }
 @keyframes gradient-animation {
   0% {
@@ -78,6 +79,7 @@ a:hover {
 }
 ::selection {
   background-color: transparent;
+  user-select: none;
 }
 .container {
   display: grid;

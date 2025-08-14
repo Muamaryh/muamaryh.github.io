@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Marszen Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #ffbb4f, #ffa616);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 0rem;
+      font-size: 0.9rem;
+    }
+    .btn {
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 4px 6px 0px rgba(0,0,0,0.6);
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 6px 8px 0px rgba(0,0,0,0.6);
+    }
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 2px 3px 0px rgba(0,0,0,0.6);
+    }
+    .btn-login {
+      background-color: #8fd6e1;
+      border: 1.5px solid #000;
+    }
+    .btn-daftar {
+      background-color: #f5a623;
+      border: 1.5px solid #000;
+    }
+    .info-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 3px solid #000;
+      border-radius: 0.75rem;
+      box-shadow: 5px 7px 0px rgba(0,0,0,0.8);
+      background: #ffffff;
+      padding: 1.5rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    #productContent {
+      min-height: 80px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+  <img src="img/laughing-cat.gif" width="150" alt="Logo" class="mx-auto mb-3 drop-shadow-lg">
+  <h1 class="text-4xl font-extrabold mb-2">List Marszen Store</h1>
+  <p class="text-base sm:text-lg mb-6 max-w-xl text-center">
+    Note: Tidak semua produk selalu ada. Tanyakan admin terlebih dahulu sebelum order, kecuali di bot.
+  </p>
+  <div class="flex gap-6 justify-center mb-8 flex-wrap">
+    <button class="btn btn-login">Order Manual</button>
+    <button class="btn btn-daftar">Order di Bot</button>
+  </div>
+  <div class="info-box">
+    <div class="flex-1 min-w-[250px] text-left">
+      <p class="mb-3 font-semibold text-lg">Marszen Store membantu kamu mendapatkan produk digital dengan mudah:</p>
+      <!-- Custom dropdown -->
+      <div class="relative">
+        <div id="dropdownBtn" class="border-2 border-black rounded-lg p-3 bg-white cursor-pointer select-none">
+          -- Pilih produk di sini --
+        </div>
+          <div id="dropdownList" class="absolute mt-1 w-full border-2 border-black rounded-lg bg-white hidden max-h-40 overflow-y-auto z-50">
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="garansi">S&K GARANSI/REFUND</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="garansiYT">GARANSI YT</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="payment">PAYMENT</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="bstation">BSTATION</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="spotify">SPOTIFY</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="youtube">YOUTUBE</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="canva">CANVA</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="ms365">MS 365</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="am">AM</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="zoom">ZOOM</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="scribd">SCRIBD</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="vpn">VPN</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="problemYT">PROBLEM YT</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="googleOne">GOOGLE ONE</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="getcontact">GETCONTACT</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="strava">STRAVA</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="picsart">PICSART</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="iqiyi">IQIYI</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="wetv">WETV</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="deepl">DEEPL</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="youku">YOUKU</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="visiontv">VISIONTV</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="disney">DISNEY</div>
+            <div class="p-2 hover:bg-gray-200 cursor-pointer" data-key="vidio">VIDIO</div>
+          </div>
+      </div>
+      <div id="productContent" class="mt-4 p-3 border-2 border-gray-300 rounded bg-gray-50">
+        Konten akan muncul di sini.
+      </div>
+    </div>
+  </div>
+  <script>
+const data = {
+  garansi: {
+    title: "S&K GARANSI / REFUND",
+    text: `
+      <strong>Garansi</strong><br>
+      - Garansi aktif dihari kalian terima produk<br>
+      - Tidak terima alasan (belum dipakai samsek)<br>
+      - Proses garansi maks 3x24<br>
+      - Tidak berlaku jika melanggar rules<br><br>
+
+      <strong>Perhitungan Refund :</strong><br>
+      Harga Beli ÷ Durasi x Sisa Durasi x 0.80 = Total Refund<br><br>
+
+      <strong>Order = Setuju dengan S&K‼</strong><br><br>
+
+      <strong>Note :</strong><br>
+      - Claim Garansi / Refund langsung chat Admin yg online, claim di grup no respon<br>
+      - Tidak terima alasan tidak baca / tidak lihat / apapun, krna sudah diingatkan saat join grup<br>
+      - 1 Tahun / Lifetime Garansi 6 Bulan
+    `
+  },
+  garansiYT: {
+  title: "GARANSI YT",
+  text: `
+    <strong>ATURAN CLAIM GARANSI YOUTUBE :</strong><br>
+    - Email Ter-Nonaktif<br>
+    - Youtube backfree (premium ilang)<br><br>
+
+    <strong>CARA CLAIM GARANSI :</strong><br>
+    1. Buyer mengirim bukti screenshot bahwa akun mengalami masalah<br>
+    2. Tunggu seller konfirmasi<br>
+    3. Buyer akan diminta mengirim email baru lagi<br>
+    4. Email baru akan diproses ke Youtube Premium lagi secara gratis (selama masa order)<br>
+    5. Garansi selalu ada jika event masih bisa digunakan, jika event difix garansi tidak berlaku<br><br>
+
+    <strong>❗WAJIB BACA</strong><br><br>
+
+    <strong>Note :</strong><br>
+    - Garansi setengah durasi<br>
+    - Akun harus segera diamanin (amanin + aktifkan v2l)<br>
+    - Akun ga diamanin GARANSI HANGUS<br>
+    - Kalo akunnya disuruh masukin nomor hp masukin aja, klo mau klaim garansi nunggu akun di-nonaktifkan dulu
+  `
+},
+  payment: {
+  title: "PAYMENT",
+  text: `
+    <strong>DANA</strong><br>
+    087741620315 (+100p)<br><br>
+
+    <strong>GOPAY, SPAY, OVO</strong><br>
+    085314271315<br><br>
+
+    <strong>SEABANK</strong><br>
+    901470778143<br><br>
+
+    <strong>BLU BY BCA</strong><br>
+    090103183623<br><br>
+
+    <strong>QRIS</strong><br>
+    <img src="img/qris.jpeg" alt="QRIS" style="max-width:100%; border:2px solid #000; border-radius:8px; margin:8px 0;"><br><br>
+
+    <em>Rekening/E-Wallet a.n. M Y H<br>
+    QRIS a.n. M D P</em><br><br>
+
+    <strong>INFORMASI</strong><br>
+    Biaya Transfer:<br>
+    &gt; Bank tf ke DANA &lt; 50k (+500p)<br>
+    &gt; QRIS (No Rate)<br>
+    &gt; DANA to DANA +100p<br><br>
+
+    Sertakan Bukti Transfer dan Kasih Catatan.
+  `
+},
+  bstation: {
+  title: "BSTATION PREMIUM",
+  text: `
+    <strong>SHARING</strong><br>
+    1 Bulan = KOSONG<br>
+    1 Tahun = KOSONG<br>
+    &gt; History watch tercampur<br>
+    &gt; Limit screen no komplain<br>
+    &gt; 25-30 hari terhitung 1 bulan<br>
+    &gt; 1 Tahun garansi 6 bulan<br><br>
+
+    <strong>PRIVATE</strong><br>
+    1 Bulan = Rp 23.000<br>
+    1 Tahun = Rp 180.000<br>
+    &gt; Histori pribadi karena private<br>
+    &gt; Menggunakan akun buyer<br>
+    &gt; Akun seller free akses mail<br>
+    &gt; Bisa perpanjang<br>
+    &gt; Support TV, Web, HP (All Screen)<br>
+    &gt; 1 Bulan full garansi<br>
+    &gt; 1 Tahun garansi 6 bulan
+  `
+},
+  spotify: { title: "SPOTIFY", text: "Kosong atau hanya tersedia di bot." },
+  youtube: {
+  title: "YOUTUBE PREMIUM",
+  text: `
+    <strong>MAIL BUYER</strong><br>
+    - 1 BULAN<br>
+    Famhead/Individu : Rp1.500 (Jelek)<br>
+    Famhead/Individu : Rp2.000 (Biasa)<br>
+    Famhead/Individu : Rp5.000 (Luar Biasa)<br>
+    Invite : Rp1.500<br><br>
+
+    - 44 HARI<br>
+    Hanya tersedia di bot<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Famhead bisa invite 5 orang<br>
+    &gt; Akun buyer wajib fresh ga boleh verif<br>
+    &gt; Harga sewaktu-waktu berubah<br>
+    &gt; Invite Full Garansi<br>
+    &gt; JELEK No Garansi No Komplain<br>
+    &gt; BIASA Garansi 3 Hari<br>
+    &gt; LUAR BIASA Garansi 20 Hari
+  `
+},
+  canva: {
+  title: "CANVA PRO",
+  text: `
+    1 BULAN INVITE<br>
+    Designer : Rp1.000<br>
+    Admin : Rp2.500<br><br>
+
+    1 BULAN OWNER<br>
+    Rp3.500 : Nogar<br>
+    Rp5.000 : Garansi<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Pro, Designer, Admin via invite mail<br>
+    &gt; 1 Tahun Garansi 6 Bulan<br>
+    &gt; 30-75 Hari Garansi Full<br>
+    &gt; OWNER bisa invite 5 Admin &amp; 500 Member Pro/Designer<br>
+    &gt; ADMIN bisa invite 100 Member Pro/Designer<br>
+    &gt; MEMBER PRO Hanya bisa menikmati fitur yang dilock<br>
+    &gt; DESIGNER PRO Bisa menambahkan/mengupload font dan kit spesial yang disebut dengan "Brandkit"<br><br>
+
+    ❗SELALU BACKUP DESIGN KALIAN
+  `
+},
+  ms365: {
+  title: "MICROSOFT 365 PREMIUM",
+  text: `
+    1 BULAN<br>
+    Rp 4.000: Invite<br>
+    Rp 5.000: Individu<br>
+    Rp 7.000: Famhead<br><br>
+
+    <strong>MS COPILOT</strong><br>
+    1 Bulan : KOSONG<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Private Full Garansi<br>
+    &gt; Invite Via Mail Aja<br>
+    &gt; Akun Buyer<br>
+    &gt; Lisensi Office 365 &amp; Onedrive 1 TB (Word, Excel, dll), include Microsoft 365 Copilot<br>
+    &gt; Bisa Perpanjang
+  `
+},
+  am: { title: "ALIGHT MOTION", text: "Kosong atau hanya tersedia di bot." },
+  zoom: {
+  title: "LIST ZOOM PRO",
+  text: `
+    14 Hari : Rp 4.000<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; 100 Peserta<br>
+    &gt; Up to 30 jam rapat<br>
+    &gt; Rekaman cloud (hingga 5GB)<br>
+    &gt; Private Full Garansi<br>
+    &gt; Bisa PPJ<br>
+    &gt; Akun dari Seller (bisa di change email ke Buyer)
+  `
+},
+  scribd: {
+  title: "SCRIBD PREMIUM",
+  text: `
+    <strong>PRIVATE</strong><br>
+    1 Bulan : Rp 3.000<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; FULL GARANSI<br>
+    &gt; AKUN SELLER/BUYER
+  `
+},
+  vpn: {
+  title: "READY TRIALAN VPN PRIVATE",
+  text: `
+    <strong>VPN 7 DAYS</strong><br>
+    Rp 3.000<br>
+    &gt; Nord VPN<br>
+    &gt; PIA VPN<br>
+    &gt; ExpressVPN<br>
+    &gt; BISA REQUEST<br><br>
+
+    <strong>VPN 30 DAYS</strong><br>
+    Rp 6.000<br>
+    &gt; ExpressVPN<br>
+    &gt; HMA VPN<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Private Full Garansi<br>
+    &gt; Free Req Mail & Pw<br>
+    &gt; Akun Seller/Buyer<br>
+    &gt; Up To 3 Device<br>
+    &gt; Support PC/Mobile<br>
+    &gt; Made by Order
+  `
+},
+  problemYT: {
+  title: "PROBLEM YT INVITE & CARA FIX NYA",
+  text: `
+    <strong>Sepertinya Anda tidak berada di negara yang sama</strong><br>
+    Cara fix nya :<br>
+    &gt; Klik link ini <a href="https://payments.google.com/gp/w/u/0/home/settings" target="_blank">https://payments.google.com/gp/w/u/0/home/settings</a><br>
+    &gt; Scroll ke bawah ada tulisan "tutup profil pembayaran" klik masukan password<br>
+    &gt; Terus alasannya bebas pilih yg mana aja, abis itu klik "lanjutkan"<br>
+    &gt; Profil berhasil tertutup klo ada tulisan "tambahkan metode pembayaran" di pay.google.com<br>
+    &gt; Close tab abis itu tinggal join ulang ke link invitenya.<br><br>
+
+    <strong>Anda sudah bergabung dengan keluarga/menunggu 12 Bulan</strong><br>
+    &gt; Cara fixnya ya ganti email dong.<br><br>
+
+    <strong>CARA INVITE ANGGOTA (KHUSUS FAMHEAD)</strong><br>
+    &gt; Masuk ke link <a href="https://myaccount.google.com/family/details" target="_blank">https://myaccount.google.com/family/details</a><br>
+    &gt; Ganti akun ada di pojok kanan atas terus klik akun yang dah premium famheadnya<br>
+    &gt; Undang anggota, beres
+  `
+},
+  googleOne: {
+  title: "GOOGLE ONE",
+  text: `
+  <img src="img/one.jpeg" alt="one" style="max-width:100%; border:2px solid #000; border-radius:8px; margin:8px 0;"><br><br>
+    <strong>1 Bulan : Rp5.000</strong><br>
+    &gt; Penyimpanan 2TB/Anggota<br>
+    &gt; Benefit cek ss di atas<br>
+    &gt; Private Full Garansi<br>
+    &gt; Akun Buyer<br>
+    &gt; Wajib akun fresh, akun pribadi boleh (own risk)
+  `
+},
+  getcontact: {
+  title: "GETCONTACT PREMIUM",
+  text: `
+    <strong>PREMIUM</strong><br>
+    1 Bulan : Rp5.000 Fullgar<br>
+    1 Bulan : Rp3.000 Gar 15D<br>
+    Cek Nomor : Rp500<br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Proses hanya menggunakan nomor<br>
+    &gt; Garansi Backfree<br>
+    &gt; 27-30 Hari terhitung 1 Bulan<br>
+    &gt; Bisa perpanjang<br>
+    &gt; Limit pencarian = 300/bulan<br>
+    &gt; Limit lihat daftar tag = 40/bulan<br>
+    &gt; Cust wajib standby<br>
+    &gt; Gagal login 3x dana hangus<br><br>
+
+    ❗ Garansi jika event masih ada. Jika tidak ada maka tdk ada garansi. Membeli = setuju.
+  `
+},
+  strava: {
+  title: "LIST STRAVA PREMIUM",
+  text: `
+    1 Bulan : KOSONG<br><br>
+
+    &gt; Private Akun Seller/Buyer<br>
+    &gt; Free Akses Mail<br>
+    &gt; Garansi Backfree<br>
+    &gt; Kelebihan Premium cek di Aplikasi atau Web strava.com
+  `
+},
+  picsart: {
+  title: "LIST PICSART PRO",
+  text: `
+    <strong>1 Bulan : Rp3.000</strong><br><br>
+
+    <strong>Note:</strong><br>
+    &gt; Akun Seller<br>
+    &gt; Private & Full Garansi<br>
+    &gt; Bisa Invite Member (Maks 10)
+  `
+},
+  iqiyi: {
+  title: "LIST IQIYI",
+  text: `
+  <img src="img/iqiyi.jpeg" alt="iqiyi" style="max-width:100%; border:2px solid #000; border-radius:8px; margin:8px 0;"><br><br>
+    <strong>1 Bulan</strong><br>
+    Standard Plan : Rp25.000<br>
+    Premium Plan : Rp30.000<br><br>
+
+    &gt; Private Full Garansi<br>
+    &gt; Akun seller<br>
+    &gt; MBO bisa req Mail & Pw<br>
+    &gt; Bisa dijual sharing<br>
+    &gt; Perbedaan Plan Standar/Premium cek gambar di atas
+  `
+},
+  wetv: {
+  title: "LIST WETV",
+  text: `
+    <strong>PRIVATE</strong><br>
+    1 Bulan : Rp25.000<br>
+    3 Bulan : Rp70.000<br>
+    1 Tahun : Rp220.000<br><br>
+
+    &gt; Akun Seller<br>
+    &gt; Private Full Garansi<br>
+    &gt; 1 Tahun Garansi 6 Bulan<br>
+    &gt; Bisa Dijual Sharing
+  `
+},
+  deepl: {
+  title: "LIST DEEPL PRO",
+  text: `
+    <strong>Advance Plan</strong><br>
+    1 Bulan : Kosong<br><br>
+
+    &gt; Private Full Garansi<br>
+    &gt; Bisa dijual sharing<br>
+    &gt; Akun Seller
+  `
+},
+  youku: {
+  title: "LIST YOUKU",
+  text: `
+    1 Bulan : Rp25.000<br>
+    3 Bulan : Rp70.000<br>
+    1 Tahun : Rp220.000<br><br>
+
+    &gt; Private<br>
+    &gt; 1 Tahun Garansi 6 Bulan
+  `
+},
+  visiontv: {
+  title: "LIST VISION+ PAYTV",
+  text: `
+    1 Bulan : KOSONG<br><br>
+
+    &gt; All Device, Akun Seller<br>
+    &gt; Include BEIN Sports, bisa nonton timnas<br>
+    &gt; Nogar tapi awet bisa sampe 1 tahun<br>
+  `
+},
+  disney: {
+  title: "LIST DISNEY+ HOTSTAR",
+  text: `
+    <strong>BASIC PLAN</strong><br>
+    1 Bulan : KOSONG<br>
+    1 Tahun : KOSONG<br><br>
+
+    <strong>PREMIUM PLAN</strong><br>
+    1 Bulan : KOSONG<br>
+    1 Tahun : KOSONG<br><br>
+
+    &gt; Private, Full Garansi<br>
+    &gt; Menggunakan Nomor Buyer/Customer<br>
+    &gt; Bisa Dijual Sharing<br>
+  `
+},
+  vidio: {
+  title: "VIDIO PLATINUM ALL SCREEN",
+  text: `
+    Biasa : 2 Bulan Rp60.000<br>
+    Extra : 2 Bulan Rp85.000<br>
+    Ultimate : 3 Bulan Rp200.000<br><br>
+
+    &gt; Private, garansi Backfree<br>
+    &gt; Bisa perpanjang<br>
+    &gt; Benefit cek 
+    <img src="img/vidio.jpeg" alt="vidio" style="max-width:100%; border:2px solid #000; border-radius:8px; margin:8px 0;"><br><br>
+  `
+}
+};
+    const dropdownBtn = document.getElementById("dropdownBtn");
+    const dropdownList = document.getElementById("dropdownList");
+    dropdownBtn.addEventListener("click", () => {
+      dropdownList.classList.toggle("hidden");
+    });
+    dropdownList.querySelectorAll("div[data-key]").forEach(item => {
+      item.addEventListener("click", () => {
+        const key = item.dataset.key;
+        dropdownBtn.textContent = item.textContent;
+        document.getElementById("productContent").innerHTML = `
+          <h3 class="font-bold mb-1 text-orange-500">${data[key].title}</h3>
+          <p>${data[key].text}</p>
+        `;
+        dropdownList.classList.add("hidden");
+      });
+    });
+    document.addEventListener("click", (e) => {
+      if (!dropdownBtn.contains(e.target) && !dropdownList.contains(e.target)) {
+        dropdownList.classList.add("hidden");
+      }
+    });
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const particles = [];
+    const shapes = ['circle', 'square', 'triangle', 'star'];
+    function resizeCanvas() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    function createParticle(x, y) {
+      particles.push({
+        x: x ?? Math.random() * w,
+        y: y ?? Math.random() * h,
+        r: Math.random() * 8 + 4,
+        dx: (Math.random() - 0.5) * 1,
+        dy: (Math.random() - 0.5) * 1,
+        color: `hsl(${Math.random() * 360}, 80%, 60%)`,
+        shape: shapes[Math.floor(Math.random() * shapes.length)]
+      });
+    }
+    function createParticles(count) {
+      for (let i = 0; i < count; i++) {
+        createParticle();
+      }
+    }
+    function drawShape(p) {
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      if (p.shape === 'circle') {
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      } else if (p.shape === 'square') {
+        ctx.rect(p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+      } else if (p.shape === 'triangle') {
+        ctx.moveTo(p.x, p.y - p.r);
+        ctx.lineTo(p.x - p.r, p.y + p.r);
+        ctx.lineTo(p.x + p.r, p.y + p.r);
+        ctx.closePath();
+      } else if (p.shape === 'star') {
+        for (let i = 0; i < 5; i++) {
+          ctx.lineTo(
+            p.x + p.r * Math.cos((18 + i * 72) * Math.PI / 180),
+            p.y - p.r * Math.sin((18 + i * 72) * Math.PI / 180)
+          );
+          ctx.lineTo(
+            p.x + (p.r / 2) * Math.cos((54 + i * 72) * Math.PI / 180),
+            p.y - (p.r / 2) * Math.sin((54 + i * 72) * Math.PI / 180)
+          );
+        }
+        ctx.closePath();
+      }
+      ctx.fill();
+    }
+    function drawParticles() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        drawShape(p);
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x - p.r < 0 || p.x + p.r > w) p.dx *= -1;
+        if (p.y - p.r < 0 || p.y + p.r > h) p.dy *= -1;
+      });
+    }
+    function animate() {
+      drawParticles();
+      requestAnimationFrame(animate);
+    }
+    canvas.addEventListener('click', e => {
+      for (let i = 0; i < 5; i++) {
+        createParticle(e.clientX, e.clientY);
+      }
+    });
+    canvas.addEventListener('mousemove', e => {
+      if (Math.random() < 0.05) {
+        createParticle(e.clientX, e.clientY);
+      }
+    });
+    createParticles(30);
+    animate();
+  </script>
+<footer class="footer">Code by Muamaryh</footer>
+</body>
+</html>
